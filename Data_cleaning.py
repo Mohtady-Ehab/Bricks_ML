@@ -12,7 +12,6 @@ def rmsValue(arr, n):
      
     #Calculate Mean
     mean = (square / (float)(n))
-     
     #Calculate Root
     root = math.sqrt(mean)
      
