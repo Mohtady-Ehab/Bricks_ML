@@ -22,6 +22,7 @@ strt = 0
 end = 9
 cntr = 0
 n = 9
+rms_values = []
 if __name__=='__main__':
     df = pd.read_excel('data.xlsx') # can also index sheet by name or fetch all sheets
     arr = df['X'].tolist()
@@ -32,6 +33,9 @@ if __name__=='__main__':
             strt +=9
             end +=9
             print(arr)
+            rms = rmsValue(arr, n)
+            rms_values.append(rms)
+            print (rms_values)
         cntr +=1
         
 
