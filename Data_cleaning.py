@@ -41,6 +41,7 @@ if __name__=='__main__':
             rms = rmsValue(arr, n)
             rms_values_x.append(rms)
         cntr +=1
+    
 
     strt = 0
     end = 9
@@ -91,21 +92,45 @@ if __name__=='__main__':
     print("\nRMS FOR Z: ")
     print (rms_values_z)
 
+    min_x = min(rms_values_x)
+    min_y = min(rms_values_y)
+    min_z = min(rms_values_z)
+
+    max_x = max(rms_values_x)
+    max_y = max(rms_values_y)
+    max_z = max(rms_values_z)
+
+
+    for x in range(20):
+        rnd_fall_x= rnd.uniform(min_x, max_x)
+        rms_values_x.append(rnd_fall_x)
+
+    for y in range(20):
+        rnd_fall_y = rnd.uniform(min_y, max_y)
+        rms_values_y.append(rnd_fall_y)
+
+    for z in range(20):
+        rnd_fall_z= rnd.uniform(min_z, max_z)
+        rms_values_z.append(rnd_fall_z)
+
+
+    
+
     #generate wind/human interation dataset
     windx = []
     windy = []
     windz = []
-    for x in range(10):
+    for x in range(30):
         rnd_windx = rnd.uniform(0,0.1)
         windx.append(rnd_windx)
     
 
-    for y in range(10):
+    for y in range(30):
         rnd_windy = rnd.uniform(0,0.1)
         windy.append(rnd_windy)
     
 
-    for z in range(10):
+    for z in range(30):
         rnd_windz = rnd.uniform(0,0.1)
         windz.append(rnd_windz)
     
