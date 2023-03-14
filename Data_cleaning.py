@@ -23,26 +23,97 @@ strt = 0
 end = 9
 cntr = 0
 n = 9
-rms_values = []
+rms_values_x = []
+rms_values_y = []
+rms_values_z = []
 if __name__=='__main__':
-    df = pd.read_excel('data.xlsx') # can also index sheet by name or fetch all sheets
-    arr = df['X'].tolist()
-    for x in arr:
+    df = pd.read_excel("data.xlsx") 
+    arrX = df['X'].tolist()
+    for x in arrX:
+        # takes the entire x column
         arr = df['X'].tolist()
+        # just a check to take one sample only 
         if cntr%9 == 0 or cntr==0:
             arr = arr[strt:end]
             strt +=9
             end +=9
-            print(arr)
+            # print(arr)
             rms = rmsValue(arr, n)
-            rms_values.append(rms)
-            print (rms_values)
+            rms_values_x.append(rms)
+        cntr +=1
+
+    strt = 0
+    end = 9
+    cntr = 0
+    n = 9
+
+    df = pd.read_excel("data.xlsx")  
+    arrY = df['Y'].tolist()
+    for y in arrY:
+        # takes the entire x column
+        arr = df['Y'].tolist()
+        # just a check to take one sample only 
+        if cntr%9 == 0 or cntr==0:
+            arr = arr[strt:end]
+            strt +=9
+            end +=9
+            # print(arr)
+            rms = rmsValue(arr, n)
+            rms_values_y.append(rms)
+        cntr +=1
+    
+    strt = 0
+    end = 9
+    cntr = 0
+    n = 9
+
+
+    df = pd.read_excel("data.xlsx") 
+    arrZ = df['Z'].tolist()
+    for z in arrZ:
+        # takes the entire x column
+        arr = df['Z'].tolist()
+        # just a check to take one sample only 
+        if cntr%9 == 0 or cntr==0:
+            arr = arr[strt:end]
+            strt +=9
+            end +=9
+            # print(arr)
+            rms = rmsValue(arr, n)
+            rms_values_z.append(rms)
         cntr +=1
 
 
+    print("\nRMS FOR X: ")
+    print (rms_values_x)
+    print("\nRMS FOR Y: ")
+    print (rms_values_y)
+    print("\nRMS FOR Z: ")
+    print (rms_values_z)
+
     #generate wind/human interation dataset
-    wind = []
+    windx = []
+    windy = []
+    windz = []
     for x in range(10):
-        rnd_wind = rnd.uniform(0,0.1)
-        wind.append(rnd_wind)
-    print (wind)
+        rnd_windx = rnd.uniform(0,0.1)
+        windx.append(rnd_windx)
+    
+
+    for y in range(10):
+        rnd_windy = rnd.uniform(0,0.1)
+        windy.append(rnd_windy)
+    
+
+    for z in range(10):
+        rnd_windz = rnd.uniform(0,0.1)
+        windz.append(rnd_windz)
+    
+
+    df_rms_values = {
+         "X": rms_values_x + windx, "Y":rms_values_y  + windy, "Z": rms_values_z + windz
+    }
+    
+    df_rms = pd.DataFrame(df_rms_values)
+
+    df_rms.to_excel("rms_data.xlsx")
