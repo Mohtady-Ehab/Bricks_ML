@@ -1,5 +1,6 @@
 import pandas as pd
 import math
+import random as rnd
 #Function that Calculate Root Mean Square
 def rmsValue(arr, n):
     square = 0
@@ -37,7 +38,11 @@ if __name__=='__main__':
             rms_values.append(rms)
             print (rms_values)
         cntr +=1
-        
 
-    # n = 9
-    # print(rmsValue(arr, n))
+
+    #generate wind/human interation dataset
+    wind = []
+    for x in range(10):
+        rnd_wind = rnd.uniform(0,0.1)
+        wind.append(rnd_wind)
+    print (wind)
